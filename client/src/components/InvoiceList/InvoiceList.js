@@ -40,15 +40,15 @@ const InvoiceList = ({ invoices, onEdit, onDelete }) => {
         </thead>
         <tbody>
           {filteredInvoices.map(inv => (
-            <tr key={inv.id}>
-              <td>{inv.id}</td>
+            <tr key={inv._id}>
+              <td>{inv._id.slice(-6)}</td>
               <td>{inv.client}</td>
-              <td>{inv.date}</td>
+              <td>{new Date(inv.date).toLocaleDateString()}</td>
               <td>${inv.total.toFixed(2)}</td>
               <td>{inv.status}</td>
               <td>
                 <button onClick={() => onEdit(inv)}>Edit</button>
-                <button onClick={() => onDelete(inv.id)}>Delete</button>
+                <button onClick={() => onDelete(inv._id)}>Delete</button>
               </td>
             </tr>
           ))}
